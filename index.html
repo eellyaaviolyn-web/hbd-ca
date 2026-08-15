@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Khailisa 🌸</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Cormorant Garamond", serif;
+        min-height: 100vh;
+        overflow: hidden;
+        color: #7d5a66;
+        background: linear-gradient(
+          165deg,
+          #fff8fa 0%,
+          #ffeaf1 45%,
+          #fcd9e4 100%
+        );
+      }
+      .blob {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(90px);
+        z-index: 1;
+        animation: drift 16s ease-in-out infinite alternate;
+      }
+      .blob1 {
+        width: 380px;
+        height: 380px;
+        background: #ffd0df;
+        opacity: 0.55;
+        top: -110px;
+        left: -120px;
+      }
+      .blob2 {
+        width: 320px;
+        height: 320px;
+        background: #ffe3ec;
+        opacity: 0.6;
+        bottom: -110px;
+        right: -100px;
+        animation-delay: -5s;
+      }
+      .blob3 {
+        width: 240px;
+        height: 240px;
+        background: #f8c3d4;
+        opacity: 0.4;
+        top: 45%;
+        left: 70%;
+        animation-delay: -9s;
+      }
+      @keyframes drift {
+        to {
+          transform: translate(40px, 28px) scale(1.12);
+        }
+      }
+      .dot {
+        position: fixed;
+        border-radius: 50%;
+        background: #f1a7c0;
+        z-index: 2;
+        animation: twinkle linear infinite;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.1;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(1.25);
+        }
+      }
+      .petal {
+        position: fixed;
+        top: -30px;
+        pointer-events: none;
+        background: linear-gradient(135deg, #ffc9d9, #f49ab6);
+        border-radius: 80% 0 80% 80%;
+        animation: fall linear forwards;
+      }
+      @keyframes fall {
+        0% {
+          transform: translate(0, 0) rotate(0);
+        }
+        25% {
+          transform: translate(26px, 28vh) rotate(95deg);
+        }
+        50% {
+          transform: translate(-20px, 55vh) rotate(185deg);
+        }
+        75% {
+          transform: translate(22px, 80vh) rotate(275deg);
+        }
+        100% {
+          transform: translate(-12px, 112vh) rotate(360deg);
+        }
+      }
+      canvas#confetti {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        pointer-events: none;
+      }
+      /* ===== TOMBOL + EFEK KILAU ===== */
+      .btn {
+        position: relative;
+        overflow: hidden;
+        border: none;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #fff;
+        padding: 13px 30px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #e58aa6, #d76f92);
+        box-shadow: 0 12px 28px rgba(217, 111, 146, 0.35);
+        transition: 0.3s;
+      }
+      .btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -70%;
+        width: 45%;
+        height: 100%;
+        transform: skewX(-20deg);
+        background: linear-gradient(
+          100deg,
+          transparent,
+          rgba(255, 255, 255, 0.55),
+          transparent
+        );
+        transition: 0.6s;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 38px rgba(217, 111, 146, 0.5);
+      }
+      .btn:hover::after {
+        left: 130%;
+      }
+      .btn.ghost {
+        background: transparent;
+        border: 1px solid #e3a9bd;
+        color: #b76e79;
+        box-shadow: none;
+      }
+      .btn.ghost:hover {
+        background: #fff0f5;
+      }
+      .btn.small {
+        padding: 10px 22px;
+        font-size: 11px;
+      }
+      /* ===== LAYAR AWAL ===== */
+      #cover {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        text-align: center;
+        padding: 20px;
+        transition:
+          opacity 0.9s,
+          visibility 0.9s;
+      }
+      #cover.fade {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .seal-wrap {
+        position: relative;
+      }
+      .ring {
+        position: absolute;
+        inset: -12px;
+        border-radius: 50%;
+        border: 1px solid rgba(221, 127, 158, 0.45);
+        animation: ring 2.6s ease-out infinite;
+      }
+      .ring.r2 {
+        animation-delay: 1.3s;
+      }
+      @keyframes ring {
+        from {
+          transform: scale(0.85);
+          opacity: 1;
+        }
+        to {
+          transform: scale(1.6);
+          opacity: 0;
+        }
+      }
+      .seal {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at 35% 30%, #f7b7ca, #dd7f9e 72%);
+        border: 4px solid rgba(255, 255, 255, 0.85);
+        color: #fff;
+        font-family: "Great Vibes", cursive;
+        font-size: 42px;
+        box-shadow:
+          0 16px 36px rgba(221, 127, 158, 0.4),
+          inset 0 2px 8px rgba(255, 255, 255, 0.5);
+        animation: floatSeal 3.2s ease-in-out infinite;
+      }
+      @keyframes floatSeal {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .cover-title {
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(40px, 7vw, 58px);
+        color: #b76e79;
+        filter: drop-shadow(0 2px 12px rgba(183, 110, 121, 0.25));
+      }
+      .cover-sub {
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        font-size: 13px;
+        letter-spacing: 1px;
+        color: #c48a9c;
+      }
+      .hint {
+        font-family: "Poppins", sans-serif;
+        font-size: 11px;
+        letter-spacing: 1px;
+        color: #d3a2b3;
+        transition: opacity 0.6s;
+      }
+      /* ===== KARTU 3D ===== */
+      #card {
+        position: fixed;
+        inset: 0;
+        z-index: 30;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+        opacity: 0;
+        visibility: hidden;
+        transition: 1s;
+      }
+      #card.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .tilt {
+        transition: transform 0.25s ease-out;
+        transform-style: preserve-3d;
+      }
+      .card-box {
+        position: relative;
+        width: min(470px, 94vw);
+        max-height: 96vh;
+        overflow-y: auto;
+        scrollbar-width: none;
+        padding: 32px 30px 26px;
+        text-align: center;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(16px);
+        border: 1px solid #f6cdd9;
+        box-shadow: 0 30px 80px rgba(214, 138, 160, 0.28);
+      }
+      .card-box::before {
+        content: "";
+        position: absolute;
+        inset: 9px;
+        border: 1px solid rgba(199, 132, 154, 0.3);
+        border-radius: 17px;
+        pointer-events: none;
+      }
+      .corner {
+        position: absolute;
+        width: 74px;
+        height: 74px;
+        color: #d9a5b7;
+        pointer-events: none;
+        opacity: 0.75;
+      }
+      .corner.tl {
+        top: 14px;
+        left: 14px;
+      }
+      .corner.tr {
+        top: 14px;
+        right: 14px;
+        transform: scaleX(-1);
+      }
+      .corner.bl {
+        bottom: 14px;
+        left: 14px;
+        transform: scaleY(-1);
+      }
+      .corner.br {
+        bottom: 14px;
+        right: 14px;
+        transform: scale(-1);
+      }
+      .sticker {
+        position: absolute;
+        top: -15px;
+        right: 20px;
+        transform: rotate(5deg);
+        z-index: 5;
+        background: linear-gradient(90deg, #e58aa6, #d76f92);
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        font-size: 10.5px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 8px 16px;
+        border-radius: 999px;
+        box-shadow: 0 8px 20px rgba(217, 111, 146, 0.45);
+      }
+      /* ===== KUE INTERAKTIF ===== */
+      .cake {
+        position: relative;
+        width: 160px;
+        height: 128px;
+        margin: 0 auto 10px;
+        cursor: pointer;
+        user-select: none;
+        transition: transform 0.3s;
+      }
+      .cake:hover {
+        transform: scale(1.04);
+      }
+      .cake::before {
+        content: "";
+        position: absolute;
+        inset: -26px;
+        background: radial-gradient(
+          circle,
+          rgba(244, 154, 182, 0.22),
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .plate {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 162px;
+        height: 12px;
+        background: linear-gradient(#f7e3d7, #e5c4b0);
+        border-radius: 50%/60%;
+        box-shadow: 0 10px 22px rgba(190, 140, 120, 0.3);
+      }
+      .tier {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 9px;
+      }
+      .tier::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 10px;
+        background: #fffdfd;
+        border-radius: 9px 9px 0 0;
+      }
+      .tier::after {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: 4px;
+        right: 4px;
+        height: 12px;
+        background: radial-gradient(
+            circle at 8px 0,
+            #fffdfd 6px,
+            transparent 7px
+          )
+          repeat-x;
+        background-size: 16px 12px;
+      }
+      .tier1 {
+        bottom: 6px;
+        width: 148px;
+        height: 38px;
+        background: linear-gradient(#f2a3bd, #e886a8);
+      }
+      .tier2 {
+        bottom: 42px;
+        width: 114px;
+        height: 34px;
+        background: linear-gradient(#fff6f3, #ffdfe9);
+      }
+      .tier3 {
+        bottom: 74px;
+        width: 82px;
+        height: 30px;
+        background: linear-gradient(#f6b7cb, #ef9db8);
+      }
+      .candles {
+        position: absolute;
+        bottom: 102px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 20px;
+      }
+      .candle {
+        width: 7px;
+        height: 26px;
+        border-radius: 3px;
+        position: relative;
+        background: repeating-linear-gradient(
+          45deg,
+          #f6a8bf 0 4px,
+          #fff 4px 8px
+        );
+      }
+      .flame {
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        width: 10px;
+        height: 14px;
+        transform: translateX(-50%);
+        background: radial-gradient(
+          circle at 50% 75%,
+          #fff7c2 0%,
+          #ffd166 40%,
+          #f5a054 85%
+        );
+        border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
+        box-shadow: 0 0 14px 4px rgba(255, 190, 120, 0.45);
+        animation: flick 0.35s ease-in-out infinite alternate;
+      }
+      @keyframes flick {
+        from {
+          transform: translateX(-50%) scale(1) rotate(-3deg);
+        }
+        to {
+          transform: translateX(-50%) scale(1.12, 0.88) rotate(3deg);
+        }
+      }
+      .flame.out {
+        animation: flameOut 0.45s forwards;
+      }
+      @keyframes flameOut {
+        to {
+          transform: translateX(-50%) scale(0);
+          opacity: 0;
+        }
+      }
+      .smoke {
+        position: absolute;
+        top: -24px;
+        left: 50%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #cbb8c4;
+        filter: blur(2px);
+        opacity: 0.85;
+        animation: smoke 1.4s forwards;
+      }
+      @keyframes smoke {
+        to {
+          transform: translate(-50%, -36px) scale(2.6);
+          opacity: 0;
+        }
+      }
+      /* ===== TEKS ===== */
+      .hbd {
+        font-family: "Poppins", sans-serif;
+        letter-spacing: 5px;
+        font-size: 10.5px;
+        font-weight: 500;
+        color: #c48a9c;
+        text-transform: uppercase;
+      }
+      .name {
+        font-family: "Great Vibes", cursive;
+        font-size: clamp(34px, 6.5vw, 44px);
+        line-height: 1.25;
+        margin: 4px 0 2px;
+        background: linear-gradient(90deg, #c07f92, #e6c08d, #c07f92, #e2a9bc);
+        background-size: 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 5s linear infinite;
+        filter: drop-shadow(0 2px 10px rgba(183, 110, 121, 0.22));
+      }
+      @keyframes shine {
+        to {
+          background-position: 300% center;
+        }
+      }
+      .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        color: #d3a2b3;
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+      .divider span {
+        height: 1px;
+        width: 70px;
+        background: linear-gradient(90deg, transparent, #e3a9bd);
+      }
+      .divider span:last-child {
+        background: linear-gradient(90deg, #e3a9bd, transparent);
+      }
+      .wish {
+        display: inline-block;
+        margin: 0 0 10px;
+        padding: 7px 18px;
+        border-radius: 999px;
+        background: #fff0f5;
+        border: 1px solid #f3c3d3;
+        color: #b76e79;
+        font-family: "Poppins", sans-serif;
+        font-size: 10.5px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .wish.pop {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .message {
+        font-size: 16.5px;
+        font-weight: 500;
+        line-height: 1.75;
+        min-height: 198px;
+        white-space: pre-wrap;
+        color: #7d5a66;
+      }
+      .from {
+        margin-top: 8px;
+        font-style: italic;
+        font-size: 16px;
+        color: #b76e79;
+      }
+      .btn-row {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 16px;
+        flex-wrap: wrap;
+      }
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <canvas id="confetti"></canvas>
+
+    <!-- ====== LAYAR AWAL ====== -->
+    <div id="cover">
+      <div class="seal-wrap">
+        <div class="ring"></div>
+        <div class="ring r2"></div>
+        <div class="seal">K</div>
+      </div>
+      <h1 class="cover-title">Untuk Khailisa</h1>
+      <p class="cover-sub">maaf telat 3 hari🌸</p>
+      <button class="btn" onclick="openCard()">Buka Kejutan</button>
+      <p class="hint">✧ nyalakan suara ya ✧</p>
+    </div>
+
+    <!-- ====== KARTU UCAPAN ====== -->
+    <div id="card" class="hidden">
+      <div class="tilt" id="tilt">
+        <div class="card-box">
+          <svg class="corner tl" viewBox="0 0 100 100">
+            <path
+              d="M4 96 C4 40 40 4 96 4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              opacity=".6"
+            />
+            <path
+              d="M14 96 C14 48 48 14 96 14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              opacity=".35"
+            />
+            <circle cx="4" cy="96" r="3" fill="currentColor" opacity=".7" />
+            <circle cx="96" cy="4" r="3" fill="currentColor" opacity=".7" />
+          </svg>
+          <svg class="corner tr" viewBox="0 0 100 100">
+            <path
+              d="M4 96 C4 40 40 4 96 4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              opacity=".6"
+            />
+            <path
+              d="M14 96 C14 48 48 14 96 14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              opacity=".35"
+            />
+            <circle cx="4" cy="96" r="3" fill="currentColor" opacity=".7" />
+            <circle cx="96" cy="4" r="3" fill="currentColor" opacity=".7" />
+          </svg>
+          <svg class="corner bl" viewBox="0 0 100 100">
+            <path
+              d="M4 96 C4 40 40 4 96 4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              opacity=".6"
+            />
+            <path
+              d="M14 96 C14 48 48 14 96 14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              opacity=".35"
+            />
+            <circle cx="4" cy="96" r="3" fill="currentColor" opacity=".7" />
+            <circle cx="96" cy="4" r="3" fill="currentColor" opacity=".7" />
+          </svg>
+          <svg class="corner br" viewBox="0 0 100 100">
+            <path
+              d="M4 96 C4 40 40 4 96 4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              opacity=".6"
+            />
+            <path
+              d="M14 96 C14 48 48 14 96 14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              opacity=".35"
+            />
+            <circle cx="4" cy="96" r="3" fill="currentColor" opacity=".7" />
+            <circle cx="96" cy="4" r="3" fill="currentColor" opacity=".7" />
+          </svg>
+          <div class="sticker">maaf telat 3 hari</div>
+          <div class="cake" onclick="blowCandles()">
+            <div class="candles">
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
+              <div class="candle"><div class="flame"></div></div>
+            </div>
+            <div class="tier tier3"></div>
+            <div class="tier tier2"></div>
+            <div class="tier tier1"></div>
+            <div class="plate"></div>
+          </div>
+          <p class="hint" id="cakeHint">🌬️ sentuh kue untuk tiup lilin</p>
+          <div class="hbd">✧ Happy Birthday</div>
+          <h1 class="name">Khailisa Dwi Agustin</h1>
+          <div class="divider"><span></span>✿<span></span></div>
+          <div class="wish" id="wish">✨ semoga harapanmu terkabul ✨</div>
+          <p class="message" id="message"></p>
+          <div class="from">— dari temanmu 💌</div>
+          <div class="btn-row">
+            <button class="btn small" onclick="moreConfetti()">
+              ✿ Confetti
+            </button>
+            <button class="btn small ghost" onclick="playSong()">
+              ♫ Putar Lagu
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ============================================================
+   ✏️ EDIT DI SINI — ganti pesan & nama pengirim sesuai mau kamu
+   ============================================================ */
+      const pesan = `Selamat bertambah usia! 🎂
+Semoga panjang umur, sehat selalu,
+makin bersinar, dan semua harapanmu
+tahun ini terkabul satu per satu ✨
+
+Maaf ya telat 3 hari
+
+Thank you for being such an
+amazing friend. Enjoy your day!✨`;
+
+      /* ===== TITIK KILAU ===== */
+      for (let i = 0; i < 45; i++) {
+        const d = document.createElement("div");
+        d.className = "dot";
+        const s = Math.random() * 3 + 1.5;
+        d.style.width = d.style.height = s + "px";
+        d.style.left = Math.random() * 100 + "vw";
+        d.style.top = Math.random() * 100 + "vh";
+        d.style.animationDuration = 2.5 + Math.random() * 3 + "s";
+        d.style.animationDelay = -Math.random() * 3 + "s";
+        document.body.appendChild(d);
+      }
+
+      /* ===== KELOPAK BUNGA ===== */
+      function spawnPetal() {
+        const p = document.createElement("div");
+        p.className = "petal";
+        const s = 10 + Math.random() * 9;
+        p.style.width = s + "px";
+        p.style.height = s + "px";
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.opacity = (0.4 + Math.random() * 0.4).toFixed(2);
+        p.style.animationDuration = 7 + Math.random() * 6 + "s";
+        p.style.zIndex = Math.random() < 0.3 ? 70 : 5;
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 14000);
+      }
+      setInterval(spawnPetal, 650);
+
+      /* ===== CONFETTI PASTEL ===== */
+      const canvas = document.getElementById("confetti"),
+        ctx = canvas.getContext("2d");
+      let W, H;
+      function resize() {
+        W = canvas.width = innerWidth;
+        H = canvas.height = innerHeight;
+      }
+      resize();
+      addEventListener("resize", resize);
+      const colors = [
+        "#f9b8cb",
+        "#fcd7e0",
+        "#f39ab5",
+        "#e9c3a8",
+        "#fff0f4",
+        "#d9a5b7",
+      ];
+      let pieces = [];
+      function makePiece(burst = false) {
+        return {
+          x: burst ? W / 2 : Math.random() * W,
+          y: burst ? H * 0.35 : -20,
+          w: 5 + Math.random() * 7,
+          h: 7 + Math.random() * 9,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: burst ? (Math.random() - 0.5) * 11 : (Math.random() - 0.5) * 2,
+          vy: burst ? -(2 + Math.random() * 7) : 1.6 + Math.random() * 2.6,
+          rot: Math.random() * Math.PI * 2,
+          vr: (Math.random() - 0.5) * 0.3,
+          swing: Math.random() * 6,
+        };
+      }
+      function burst(n = 170) {
+        for (let i = 0; i < n; i++) pieces.push(makePiece(true));
+      }
+      let raining = false;
+      function loop() {
+        ctx.clearRect(0, 0, W, H);
+        if (raining && pieces.length < 240 && Math.random() < 0.7)
+          pieces.push(makePiece());
+        pieces.forEach((p) => {
+          p.swing += 0.05;
+          p.vy += 0.07;
+          p.x += p.vx + Math.sin(p.swing) * 1.1;
+          p.y += p.vy;
+          p.rot += p.vr;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        pieces = pieces.filter((p) => p.y < H + 40);
+        requestAnimationFrame(loop);
+      }
+      loop();
+
+      /* ===== KARTU 3D NGIKUTIN KURSOR ===== */
+      const tilt = document.getElementById("tilt");
+      document.addEventListener("mousemove", (e) => {
+        if (!document.getElementById("card").classList.contains("show")) return;
+        const r = tilt.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+        const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+        tilt.style.transform = `perspective(1100px) rotateY(${dx * 5}deg) rotateX(${-dy * 5}deg)`;
+      });
+
+      /* ===== BUKA KARTU ===== */
+      function openCard() {
+        document.getElementById("cover").classList.add("fade");
+        setTimeout(() => {
+          document.getElementById("cover").style.display = "none";
+          const card = document.getElementById("card");
+          card.classList.remove("hidden");
+          requestAnimationFrame(() => card.classList.add("show"));
+          burst(120);
+          playSong();
+        }, 750);
+      }
+
+      /* ===== TIUP LILIN ===== */
+      let blown = false;
+      function blowCandles() {
+        if (blown) return;
+        blown = true;
+        document.querySelectorAll(".flame").forEach((f, i) => {
+          setTimeout(() => {
+            f.classList.add("out");
+            const s = document.createElement("span");
+            s.className = "smoke";
+            f.parentElement.appendChild(s);
+            setTimeout(() => s.remove(), 1500);
+          }, i * 180);
+        });
+        setTimeout(() => {
+          document.getElementById("cakeHint").style.opacity = 0;
+          document.getElementById("wish").classList.add("pop");
+          burst(260);
+          raining = true;
+          setTimeout(() => (raining = false), 6000);
+          typeMessage();
+        }, 700);
+      }
+      function moreConfetti() {
+        burst(180);
+        raining = true;
+        setTimeout(() => (raining = false), 4000);
+      }
+
+      /* ===== PESAN MENGETIK ===== */
+      function typeMessage() {
+        const el = document.getElementById("message");
+        let i = 0;
+        const t = setInterval(() => {
+          el.textContent = pesan.slice(0, i);
+          i++;
+          if (i > pesan.length) clearInterval(t);
+        }, 40);
+      }
+
+      /* ===== LAGU HAPPY BIRTHDAY ===== */
+      let audioCtx;
+      const tempo = 0.42;
+      const freq = {
+        G: 392,
+        A: 440,
+        B: 493.88,
+        C5: 523.25,
+        D5: 587.33,
+        E5: 659.25,
+        F5: 698.46,
+        G5: 783.99,
+      };
+      const song = [
+        ["G", 0.75],
+        ["G", 0.25],
+        ["A", 1],
+        ["G", 1],
+        ["C5", 1],
+        ["B", 2],
+        ["G", 0.75],
+        ["G", 0.25],
+        ["A", 1],
+        ["G", 1],
+        ["D5", 1],
+        ["C5", 2],
+        ["G", 0.75],
+        ["G", 0.25],
+        ["G5", 1],
+        ["E5", 1],
+        ["C5", 1],
+        ["B", 1],
+        ["A", 2],
+        ["F5", 0.75],
+        ["F5", 0.25],
+        ["E5", 1],
+        ["C5", 1],
+        ["D5", 1],
+        ["C5", 2.5],
+      ];
+      function playSong() {
+        if (!audioCtx)
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let t = audioCtx.currentTime + 0.1;
+        song.forEach(([n, d]) => {
+          const o = audioCtx.createOscillator(),
+            g = audioCtx.createGain();
+          o.type = "triangle";
+          o.frequency.value = freq[n];
+          g.gain.setValueAtTime(0.0001, t);
+          g.gain.exponentialRampToValueAtTime(0.2, t + 0.02);
+          g.gain.exponentialRampToValueAtTime(0.0001, t + d * tempo * 0.95);
+          o.connect(g);
+          g.connect(audioCtx.destination);
+          o.start(t);
+          o.stop(t + d * tempo);
+          t += d * tempo;
+        });
+      }
+    </script>
+  </body>
+</html>
